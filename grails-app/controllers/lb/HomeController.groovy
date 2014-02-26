@@ -2,10 +2,12 @@ package lb
 
 import grails.plugin.springsecurity.annotation.Secured
 
-@Secured(['ROLE_USER'])
 class HomeController {
 
-    def index() { render 'home' }
+    @Secured(['permitAll'])
+    def index() {
+
+    }
 
     @Secured(['ROLE_ADMIN'])
     def adminOnly() { render 'admin' }

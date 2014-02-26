@@ -128,7 +128,8 @@ grails.plugin.springsecurity.controllerAnnotations.staticRules = [
         '/**/favicon.ico': ['permitAll'],
         '/login/**': ['permitAll'],
         '/logout/**': ['permitAll'],
-
+        // acr
+        '/dbconsole/**': ['permitAll'],
 ]
 //acr
 grails.plugin.springsecurity.sucessHandler.defaultTargetUrl = '/home'
