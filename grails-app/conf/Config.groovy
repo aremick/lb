@@ -125,6 +125,11 @@ grails.plugin.springsecurity.controllerAnnotations.staticRules = [
         '/**/js/**': ['permitAll'],
         '/**/css/**': ['permitAll'],
         '/**/images/**': ['permitAll'],
-        '/**/favicon.ico': ['permitAll']
-]
+        '/**/favicon.ico': ['permitAll'],
+        '/login/**': ['permitAll'],
+        '/logout/**': ['permitAll'],
 
+]
+//acr
+grails.plugin.springsecurity.sucessHandler.defaultTargetUrl = '/home'
+grails.plugin.springsecurity.logout.postOnly = false
