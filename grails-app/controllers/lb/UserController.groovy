@@ -11,6 +11,7 @@ class UserController {
 
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 
+    @Secured('ROLE_ADMIN')
     def index(Integer max) {
         params.max = Math.min(max ?: 10, 100)
         respond User.list(params), model: [userInstanceCount: User.count()]
@@ -20,10 +21,12 @@ class UserController {
         respond userInstance
     }
 
+    @Secured('permitAll')
     def create() {
         respond new User(params)
     }
 
+    @Secured('permitAll')
     @Transactional
     def save(User userInstance) {
         if (userInstance == null) {
@@ -37,6 +40,13 @@ class UserController {
         }
 
         userInstance.save flush: true
+        // add user role
+        def userRole = Role.findByAuthority('ROLE_USER') ?: new Role(authority: 'ROLE_USER').save(flush: true, failOnError: true)
+        if (!userInstance.authorities.contains(userRole)) {
+            UserRole.create(userInstance, userRole, true)
+        }
+
+
 
         request.withFormat {
             form multipartForm {

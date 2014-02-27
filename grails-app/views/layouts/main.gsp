@@ -20,9 +20,9 @@
 </head>
 
 <body>
-<div id="grailsLogo" role="banner"><a href="http://grails.org"><img
-        src="${resource(dir: 'images', file: 'grails_logo.png')}" alt="Grails"/></a><sec:ifLoggedIn>
-    Username:<sec:username/> Roles:<sec:loggedInUserInfo field="authorities"/>
+<div id="grailsLogo" role="banner"><a href="http://grails.org"></a><sec:ifLoggedIn>
+    Username:<sec:username/> Roles:<sec:loggedInUserInfo field="authorities"/> <g:link
+            controller="logout">Logout</g:link>
 </sec:ifLoggedIn>
     <sec:ifNotLoggedIn>
         <g:link controller='login' action='auth'>Login</g:link>
